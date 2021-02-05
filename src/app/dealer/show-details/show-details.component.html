@@ -1,0 +1,81 @@
+<div class="container-fluid dealerContainer d-flex align-items-center justify-content-center">
+    <div class="dealer">
+        <div class="row m-0 header">
+            <div class="col-12 p-3 d-flex align-items-center justify-content-between">
+                <img src="assets/icons/logo.jpg">
+                <button mat-raised-button class="about" color="accent" (click)="openAbout()"> About Galves </button>
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <div class="row m-0 body print-section textBlue" id="printSection" *ngIf="!isGetingMileageAdjustment" #printSection>
+
+            <div class="col-12">
+                <h3 class="m-0 font-weight-bold"> {{ info?.year }} {{ info?.make }} {{ info?.model }} {{ info?.style }}
+                </h3>
+                <h4 class="m-0">
+                    <span class="font-weight-bold"> Std Features: </span> {{ info?.includes }}
+                </h4>
+                <h4 class="m-0">
+                    <span class="font-weight-bold"> Mileage: </span> {{ info?.mileage | number }}
+                </h4>
+                <h4 class="m-0">
+                    <span class="font-weight-bold"> Add/Deducts: </span> {{ info?.equipments?.length === 0 ? "None" : "" }}
+                </h4>
+            </div>
+
+            <div class="col-12" *ngIf="info?.equipments?.length !== 0">
+                <hr class="separator-thin my-2">
+            </div>
+
+            <div class="col-12">
+                <h4 *ngFor="let equipment of info?.equipments" class="m-0">
+                    {{ equipment?.desc }}
+                </h4>
+            </div>
+
+            <div class="col-12">
+                <hr class="separator-thin my-2">
+            </div>
+
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <h2 class="m-0 font-weight-bold"> GALVES TRADE-IN VALUE </h2>
+                <h3 class="m-0 font-weight-bold"> ${{ trade | number }} </h3>
+            </div>
+
+            <div class="col-12 text-justify">
+                <span class="font-weight-bold">"TRADE-IN" value:</span> A vehicle in good cosmetic and mechanical
+                condition. May need some reconditioning in the area of brakes, wheels, interior & exterior cosmetics.
+                Any previous paintwork must be of good quality and not extensive or involving structural damage. Will
+                need minor reconditioning and detailing to be sold at retail. Free of vehicle history issues. Most
+                consumer-owned vehicles fit into this category.
+            </div>
+
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <h2 class="m-0 font-weight-bold"> GALVES MARKET READY VALUE </h2>
+                <h3 class="m-0 font-weight-bold"> ${{ market | number }} </h3>
+            </div>
+
+            <div class="col-12 text-justify">
+                <span class="font-weight-bold">"MARKET READY" value:</span> Representative of a vehicle that needs NO
+                RECONDITIONING mechanically or cosmetically. Excellent wheels and tires. All systems have been inspected
+                are operating optimally. No evidence of previous paintwork or vehicle history issues. Excellent service
+                records and service history. A vehicle that would qualify for certification. ONLY THE MOST EXCEPTIONAL
+                CONSUMER-OWNED VEHICLES FIT INTO THIS CATEGORY.
+            </div>
+        </div>
+        <div class="loadingSpinner d-flex align-items-center justify-content-center" *ngIf="isGetingMileageAdjustment">
+            <mat-progress-spinner color="primary" mode="indeterminate" diameter="36"></mat-progress-spinner>
+        </div>
+
+        <hr class="separator">
+
+        <div class="row m-0 my-3 footer">
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <button mat-raised-button color="primary" (click)="startOver()"> Start over </button>
+                <button mat-raised-button color="primary" (click)="print()"> Print </button>
+            </div>
+        </div>
+    </div>
+</div>

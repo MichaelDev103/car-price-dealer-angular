@@ -1,0 +1,52 @@
+<div class="container-fluid dealerContainer d-flex align-items-center justify-content-center">
+    <div class="dealer">
+        <div class="row m-0 header">
+            <div class="col-12 p-3 d-flex align-items-center justify-content-between">
+                <img src="assets/icons/logo.jpg">
+                <button mat-raised-button color="accent" (click)="openAbout()"> About Galves </button>
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <div class="row m-0 body">
+            <div class="col-12">
+                <h3 class="m-0 textBlue font-weight-bold"> {{ info?.year }} {{ info?.make }} {{ info?.model }} {{ info?.style?.style }} </h3>
+                <h4 class="m-0 textBlue font-weight-bold"> Step 3 of 4: Select optional equipment and vehicle mileage </h4>
+            </div>
+
+            <div class="col-12">
+                <div class="listDiv d-flex align-items-center justify-content-center">
+                    <mat-selection-list *ngIf="!isLoadingEquipments;else loadingEquipments" color="primary" (selectionChange)="onEquipmentSelect($event)" #equipmentsEl>
+                        <mat-list-option *ngFor="let equipment of vehicle?.vacs" [value]="equipment" [selected]="equipment?.selected" checkboxPosition="before">
+                            {{ equipment?.desc }}
+                        </mat-list-option>
+                    </mat-selection-list>
+                    <ng-template #loadingEquipments>
+                        <mat-progress-spinner color="primary" mode="indeterminate" diameter="36"></mat-progress-spinner>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="col-12 textBlue">
+                <h4 class="m-0 mt-2">
+                    <span class="font-weight-bold"> Std Features: </span> {{ vehicle?.includes }}
+                </h4>
+            </div>
+
+            <div class="col-12 textBlue">
+                <span class="font-weight-bold"> Enter vehicle mileage </span> <span class="font-italic"> (required):&nbsp;&nbsp;&nbsp; </span>
+                <input type="text" id="mileages" mask="000000" [(ngModel)]="mileages" (keydown.enter)="blur($event)">
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <div class="row m-0 my-3">
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <button mat-raised-button color="primary" (click)="startOver()"> Start over </button>
+                <button mat-raised-button color="primary" [disabled]="isGetingMileageAdjustment" (click)="nextStep()"> Show Vehicle Values </button>
+            </div>
+        </div>
+    </div>
+</div>

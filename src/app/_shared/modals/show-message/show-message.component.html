@@ -1,0 +1,6 @@
+<h4 class="">
+    Please enter your vehicle mileage to continue
+</h4>
+<div class="d-flex align-content-center justify-content-center">
+    <button mat-raised-button *ngFor="let button of buttons" [color]="button?.color" (click)="ok()"> {{ button?.text }} </button>
+</div>

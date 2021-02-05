@@ -1,0 +1,50 @@
+<div class="container-fluid dealerContainer d-flex align-items-center justify-content-center">
+    <div class="dealer">
+        <div class="row m-0 header">
+            <div class="col-12 p-3 d-flex align-items-center justify-content-between">
+                <img src="assets/icons/logo.jpg">
+                <button mat-raised-button color="accent" (click)="openAbout()"> About Galves </button>
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <div class="row m-0 body">
+            <div class="col-12">
+                <h4 class="m-0 textBlue font-weight-bold"> {{ year }}  {{ make }} </h4>
+                <h4 class="m-0 textBlue font-weight-bold"> Step 2 of 4: Select your vehicle model and style </h4>
+            </div>
+
+            <div class="col-4 h-100">
+                <h5 class="m-0 mt-3 textBlue font-weight-bold"> Models </h5>
+                <div class="listDiv d-flex align-items-center justify-content-center">
+                    <mat-selection-list *ngIf="!isLoadingModels;else loadingModels" [multiple]="false" (selectionChange)="onModelChange()" #modelsEl>
+                        <mat-list-option *ngFor="let model of models" [value]="model"> {{ model }} </mat-list-option>
+                    </mat-selection-list>
+                    <ng-template #loadingModels>
+                        <mat-progress-spinner color="primary" mode="indeterminate" diameter="36"></mat-progress-spinner>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="col-8 h-100">
+                <h5 class="m-0 mt-3 textBlue font-weight-bold"> Styles </h5>
+                <div class="listDiv d-flex align-items-center justify-content-center">
+                    <mat-selection-list *ngIf="!isLoadingStyles;else loadingStyles" [multiple]="false" (selectionChange)="onStyleChange()" #stylesEl>
+                        <mat-list-option *ngFor="let style of styles" [value]="style"> {{ style?.style }} </mat-list-option>
+                    </mat-selection-list>
+                    <ng-template #loadingStyles>
+                        <mat-progress-spinner color="primary" mode="indeterminate" diameter="36"></mat-progress-spinner>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <div class="row m-0 my-3">
+            <div class="col-12">
+                <button mat-raised-button color="primary" (click)="startOver()"> Start over </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="container-fluid dealerContainer d-flex align-items-center justify-content-center">
+    <div class="dealer">
+        <div class="row m-0 header">
+            <div class="col-12 p-3 d-flex align-items-center justify-content-between">
+                <img src="assets/icons/logo.jpg">
+                <button mat-raised-button color="accent" (click)="openAbout()"> About Galves </button>
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <div class="row m-0 body">
+            <div class="col-12">
+                <h4 class="textBlue m-0 text-uppercase font-weight-bold"> Determine your trade-in value in four easy steps </h4>
+                <h4 class="m-0 textBlue font-weight-bold"> Step 1 of 4: Select your vehicle year and make </h4>
+            </div>
+
+            <div class="col-3 h-100">
+                <h5 class="m-0 mt-3 textBlue font-weight-bold"> Year </h5>
+                <div class="listDiv d-flex align-items-center justify-content-center">
+                    <mat-selection-list *ngIf="!isLoadingYears;else loadingYears" [multiple]="false" (selectionChange)="onYearChange()" #yearsEl>
+                        <mat-list-option *ngFor="let year of years" [value]="year"> {{ year }} </mat-list-option>
+                    </mat-selection-list>
+                    <ng-template #loadingYears>
+                        <mat-progress-spinner color="primary" mode="indeterminate" diameter="36"></mat-progress-spinner>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="col-9 h-100">
+                <h5 class="m-0 mt-3 textBlue font-weight-bold"> Make </h5>
+                <div class="listDiv d-flex align-items-center justify-content-center">
+                    <mat-selection-list *ngIf="!isLoadingMakes;else loadingMakes" [multiple]="false" (selectionChange)="onMakeChange()" #makesEl>
+                        <mat-list-option *ngFor="let make of makes" [value]="make"> {{ make }} </mat-list-option>
+                    </mat-selection-list>
+                    <ng-template #loadingMakes>
+                        <mat-progress-spinner color="primary" mode="indeterminate" diameter="36"></mat-progress-spinner>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+        <hr class="separator">
+    </div>
+</div>

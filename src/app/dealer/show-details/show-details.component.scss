@@ -1,0 +1,36 @@
+.container-fluid {
+    .dealer {
+        .body {
+            height: 404px;
+            overflow: auto;
+        }
+        .loadingSpinner {
+            height: 404px;
+        }
+    }
+
+    .separator-thin {
+        background: #054da6;
+        height: 1px;
+    }
+}
+
+@media print {
+    .container-fluid {
+        min-height: auto !important;
+        align-items: flex-start !important;
+        padding-top: 46px;
+    }
+
+    .header .about {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .print-section {
+        height: auto !important;
+    }
+}
